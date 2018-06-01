@@ -1,0 +1,14 @@
+
+.mennu{
+    float: right;
+    margin-right: 20px;
+}
+.mennu li{
+    float: left;
+    margin: 10px;
+    list-style: none;
+}
+header{
+    height: 60px;
+    background-color: antiquewhite;
+}
