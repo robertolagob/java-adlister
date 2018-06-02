@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="partials/Styles.css">
+    <link rel="stylesheet" href="head.css">
 </head>
 <body>
 <header>
