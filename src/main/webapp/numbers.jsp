@@ -18,7 +18,5 @@
     <input type="submit" value="Add" name="calculus">
     <input type="submit" value="multiply" name="calculus">
 </form>
-
-
 </body>
 </html>
