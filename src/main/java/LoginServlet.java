@@ -12,6 +12,7 @@ public class LoginServlet extends HttpServlet {
         HttpSession user=request.getSession();
         if ((user.getAttribute("loged")==null)){
             request.getRequestDispatcher("/login.jsp").forward(request, response);
+
         }
         else {
             response.sendRedirect("/profile");
@@ -24,13 +25,21 @@ public class LoginServlet extends HttpServlet {
         HttpSession user=request.getSession();
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        boolean validAttempt = username.equals("admin") && password.equals("password");
-        if ((validAttempt)&&(user.getAttribute("loged")==null)){
-                user.setAttribute("loged","yes");
-                request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request,response);
+        boolean validAttempt = "admin".equals(username) && "password".equals(password);
+        String delete=request.getParameter("close");
+           if
+            ("CloseSession".equalsIgnoreCase(delete)) {
+                user.invalidate();
+                response.sendRedirect("/login");
             }
-         else  {
-            response.sendRedirect("/login");
-        }
+        else {
+               if ((validAttempt) && (user.getAttribute("loged") == null)) {
+                   user.setAttribute("loged", "yes");
+                   request.setAttribute("name",username);
+                   request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
+               } else {
+                   response.sendRedirect("/login");
+               }
+           }
     }
 }
