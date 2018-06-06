@@ -36,7 +36,6 @@ public class MySQLAdsDao implements Ads {
                 Ad ad = new Ad(id,idUser,title, description);
                 adsList.add(ad);
             }
-            connection.close();
         }catch (SQLException a){
             System.out.println(a);
 
@@ -48,15 +47,13 @@ public class MySQLAdsDao implements Ads {
     @Override
     public Long insert(Ad ad)
     {
-        long id=ad.getId();
-        long idUser=ad.getUserId();
+        long id=ad.getUserId();
         String title=ad.getTitle();
         String description=ad.getDescription();
-        String selectQuery="INSERT INTO ads(id,User_id,title, description) VALUES (id,iduser,title,description)";
+        String insertQuery="INSERT INTO ads(user_id,title, description) VALUES ("+id+','+title+','+description+")";
         try {
             Statement stmt = connection.createStatement();
-            stmt.executeQuery(selectQuery);
-            connection.close();
+            stmt.executeQuery(insertQuery);
         }catch (Exception e){
             System.out.println(e);
         }
