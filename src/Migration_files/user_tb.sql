@@ -8,7 +8,9 @@ CREATE TABLE users (
   username VARCHAR(240) NOT NULL,
   email VARCHAR(240) NOT NULL,
   password VARCHAR(255) NOT NULL,
+  record INT,
   PRIMARY KEY (id)
+
 );
 
 CREATE TABLE ads (
@@ -21,7 +23,7 @@ CREATE TABLE ads (
     ON DELETE CASCADE
 );
 
-INSERT INTO  users(i,username,email,password) VALUE ( 1,'Juan','juan@whatup.com', 'juanpassword'),
+INSERT INTO  users(id,username,email,password) VALUE ( 1,'Juan','juan@whatup.com', 'juanpassword'),
   (2, 'Manuel','manuel@whatup.com', 'manuelpassword'),
   (3, 'Junior','junior@whatup.com', 'juniorpassword'),
   (4, 'Adrew','andy@whatup.com', 'andypassword');
