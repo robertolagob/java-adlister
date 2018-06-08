@@ -40,9 +40,13 @@ public class MySQLAdsDao implements Ads {
 
     @Override
     public Long insert(Ad ad) {
+        String cadena="INSERT INTO ads(user_id, title, description)"+" VALUES (?,?,?)";
         try {
-            Statement stmt = connection.createStatement();
-            stmt.executeUpdate(createInsertQuery(ad), Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement stmt = connection.prepareStatement(cadena,Statement.RETURN_GENERATED_KEYS);
+            stmt.setLong(1, ad.getUserId());
+            stmt.setString(2,ad.getTitle());
+            stmt.setString(3,ad.getDescription());
+            stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
             rs.next();
             return rs.getLong(1);
@@ -51,12 +55,19 @@ public class MySQLAdsDao implements Ads {
         }
     }
 
-    private String createInsertQuery(Ad ad) {
-        return "INSERT INTO ads(user_id, title, description) VALUES "
-            + "(" + ad.getUserId() + ", "
-            + "'" + ad.getTitle() +"', "
-            + "'" + ad.getDescription() + "')";
-    }
+//    private String createInsertQuery(Ad ad) {
+//        String cadena="INSERT INTO ads(user_id, title, description) VALUES (?,?,?)";
+//        try {
+//            PreparedStatement stmt = connection.prepareStatement(cadena);
+//            stmt.setLong(1, ad.getUserId());
+//            stmt.setString(2,ad.getTitle());
+//            stmt.setString(3,ad.getDescription());
+//        }catch (Exception e){
+//            System.out.println("Error setting the string for the createInsertquery method on MySQLAdsDao.java");
+//            System.out.println(e);
+//        }
+//        return cadena;
+//    }
 
     private Ad extractAd(ResultSet rs) throws SQLException {
         return new Ad(
