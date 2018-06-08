@@ -8,10 +8,8 @@
 </head>
 <body>
     <jsp:include page="/WEB-INF/partials/navbar.jsp" />
-
     <div class="container">
         <h1>Welcome <c:out escapeXml="true" value= "${sessionScope.user}!"/></h1>
     </div>
-
 </body>
 </html>
